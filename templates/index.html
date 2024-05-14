@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Loan Default Prediction</title>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      font-family: 'Arimo', sans-serif;
+      background-color: #f4f4f4;
+    }
+    .login {
+      width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      font-family: 'Pacifico', cursive;
+      font-size: 36px;
+      color: #333;
+    }
+    label {
+      font-size: 18px;
+      font-weight: bold;
+      color: #555;
+    }
+    input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    .button-container {
+      text-align: center;
+    }
+    .predict-button {
+      font-size: 18px;
+      padding: 12px 24px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .predict-button:hover {
+      background-color: #45a049;
+    }
+    .prediction-container {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .prediction-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <h1>Predict Loan Default</h1>
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict') }}" method="post">
+      <label for="age">Age</label>
+      <input type="text" name="Age" placeholder="Age" required="required" />
+      
+      <label for="income">Income</label>
+      <input type="text" name="Income" placeholder="Income" required="required" />
+      
+      <label for="loan_amount">Loan Amount</label>
+      <input type="text" name="LoanAmount" placeholder="Loan Amount" required="required" />
+      
+      <label for="credit_score">Credit Score</label>
+      <input type="text" name="CreditScore" placeholder="Credit Score" required="required" />
+      
+      <label for="months_employed">Months Employed</label>
+      <input type="text" name="MonthsEmployed" placeholder="Months Employed" required="required" />
+      
+      <label for="num_credit_lines">Num Credit Lines</label>
+      <input type="text" name="NumCreditLines" placeholder="Num Credit Lines" required="required" />
+      
+      <label for="interest_rate">Interest Rate</label>
+      <input type="text" name="InterestRate" placeholder="Interest Rate" required="required" />
+      
+      <label for="dti_ratio">DTI Ratio</label>
+      <input type="text" name="DTIRatio" placeholder="DTI Ratio" required="required" />
+      
+      <label for="education">Education</label>
+      <input type="text" name="Education" placeholder="[0: High School, 1: Bachelor, 2: Master, 3: PhD]" required="required" />
+      
+      <label for="employment_type">Employment Type</label>
+      <input type="text" name="EmploymentType" placeholder="[0: Unemployed, 1: Full-time, 2: Self-employed, 3: Part-time]" required="required" />
+      
+      <label for="has_mortgage">Has Mortgage</label>
+      <input type="text" name="HasMortgage" placeholder="[1: Yes, 0: No]" required="required" />
+      
+      <label for="has_dependents">Has Dependents</label>
+      <input type="text" name="HasDependents" placeholder="[1: Yes, 0: No]" required="required" />
+      
+      <label for="loan_purpose">Loan Purpose</label>
+      <input type="text" name="LoanPurpose" placeholder="[0: Auto, 1: Business, 2: Education, 3: Home, 4: Other]" required="required" />
+      
+      <label for="has_cosigner">Has Co-signer</label>
+      <input type="text" name="HasCoSigner" placeholder="[1: Yes, 0: No]" required="required" />
+      
+      <div class="button-container">
+        <button type="submit" class="predict-button">Predict</button>
+      </div>
+    </form>
+    <!-- Prediction Output -->
+    <div class="prediction-container">
+      <p class="prediction-text">{{ prediction_text }}</p>
+    </div>
+  </div>
+</body>
+</html>
